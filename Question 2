@@ -1,0 +1,32 @@
+def computepay(hours, rate):
+    try:
+        hours = float(hours)
+        rate = float(rate)
+        
+        if hours > 40:
+            overtime_hours = hours - 40
+            regular_hours = 40
+            overtime_pay = overtime_hours * (rate * 1.5)
+            regular_pay = regular_hours * rate
+            total_pay = regular_pay + overtime_pay
+        else:
+            total_pay = hours * rate
+        
+        return total_pay
+    except ValueError:
+        return "Error: Invalid input. Please enter numeric values for hours and rate."
+
+try:
+    hours = input("Enter hours worked: ")
+    rate = input("Enter hourly rate: ")
+
+    salary = computepay(hours, rate)
+    
+    if isinstance(salary, str):
+        print(salary)
+    else:
+        print("Total Salary:", salary)
+except KeyboardInterrupt:
+    print("\nProgram terminated by user.")
+except Exception as e:
+    print("An error occurred:", str(e))
